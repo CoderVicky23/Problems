@@ -13,7 +13,27 @@ vector <vector <int>> spiralMatrix(int rows, int cols, int rStart, int cStart) {
     while (matrix.size() != rows*cols) {
         if ((x < cols && x >= 0) && (y < rows && y >= 0)) {
             matrix.push_back({y, x});
-            cout << "pushed" << y << " " << x << endl;
+        }
+        if (i >= k) {
+            if (right) {
+                right = 0;
+                down = 1;
+            } else if (down) {
+                down = 0;
+                left = 1;
+            } else if (left) {
+                left = 0;
+                up = 1;
+            } else if (up) {
+                up = 0;
+                right = 1;
+            }
+            i = 0;
+            counter++;
+            if (counter > 1) {
+                k++;
+                counter = 0;
+            }
         }
         if (i < k) {
             if (right) {
@@ -26,30 +46,6 @@ vector <vector <int>> spiralMatrix(int rows, int cols, int rStart, int cStart) {
                 y--;
             }
             i++;
-        } else {
-            if (right) {
-                right = 0;
-                down = 1;
-                y++;
-            } else if (down) {
-                down = 0;
-                left = 1;
-                x--;
-            } else if (left) {
-                left = 0;
-                up = 1;
-                y--;
-            } else if (up) {
-                up = 0;
-                right = 1;
-                x++;
-            }
-            i = 0;
-            counter++;
-            if (counter > 1) {
-                k++;
-                counter = 0;
-            }
         }
     }
     return matrix;

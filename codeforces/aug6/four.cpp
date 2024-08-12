@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// THIS CODE MAY WORK FOR SUBSTRING CASE NOT SUBSEQUENCE
 int main() {
     int t;
     cin >> t;
