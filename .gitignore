@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Do not ignore .gitignore
+!.gitignore
+
+# Do not ignore .cpp and .c files
+!*.cpp
+!*.c
