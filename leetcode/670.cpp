@@ -3,33 +3,32 @@
 using namespace std;
 
 int maximumSwap(int n) {
-    int k = n;
-    string ns = "";
-    int s = log10(n) + 1;
-    s--;
-    int greatest = 0;
-    int index = -1;
-    while (k) {
-        int rem = k%10;
-        if (rem > greatest) {
-            greatest = rem;
-            index = s;
-        }
-        ns = (char) rem + ns;
-        k /= 10;
-    }
-    k = n;
-    
-    for (int i=0; i<ns.size(); i++) {
-        int m = ns[i]-48;
-        if (m < greatest) {
-
+    string s = to_string(n);
+    int k = s.size();
+    int array[n] = {0};
+    array[k-1] = k-1;
+    int max_index = k-1;
+    for (int i=k-2; i>=0; i--) {
+        if (s[i] > s[max_index]) {
+            array[i] = i;
+            max_index = i;
+        } else {
+            array[i] = max_index;
         }
     }
+    for (int i=0; i<s.size(); i++) {
+        if (s[array[i]] > s[i]) {
+            char temp = s[i];
+            s[i] = s[array[i]];
+            s[array[i]] = temp;
+            break;
+        }
+    }
+    return stoi(s);
 }
 
 int main() {
-    int n = 105989;
+    int n = 500009;
     cout << maximumSwap(n) << endl;
     return 0;
 }
